@@ -33,5 +33,6 @@ end
 Robot = SerialLink([links{:}], 'tool', transl([L(2), 0, 0]), 'name', 'Pacho Norras');
 
 % Test
-q0 = [-pi/2 pi/2]; % Posicion inicial
+q0 = [0 -pi/2]; % Posicion inicial
+qf = [0 pi/2];
 Robot.teach(q0)
