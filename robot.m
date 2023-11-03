@@ -26,12 +26,12 @@ DH(2).d = 0; DH(2).a = L(1); DH(2).alpha = 0;
 %% Creación de Links
 for i = 1:N
     links{i} = Link(type{i}, 'modified', 'd', DH(i).d, 'a', DH(i).a, 'alpha', DH(i).alpha, ...
-        'I', I{i}, 'r', R{i}, 'm', M(i), 'B', B); % Vector de estructuras Link
+        'I', I{i}, 'r', R{i}, 'm', M(i), 'B', B(i)); % Vector de estructuras Link
 end
 
 %% Creación del Robot
 Robot = SerialLink([links{:}], 'tool', transl([L(2), 0, 0]), 'name', 'Pacho Norras');
 
-%% Test
-% q0 = [-pi/2 pi/2]; % Posicion inicial
-% Robot.teach(q0)
+% Test
+q0 = [-pi/2 pi/2]; % Posicion inicial
+Robot.teach(q0)
