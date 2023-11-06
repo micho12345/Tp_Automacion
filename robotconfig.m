@@ -36,3 +36,12 @@ Robot = SerialLink([links{:}], 'tool', transl([L(2), 0, 0]), 'name', 'Pacho Norr
 q0 = [0 -pi/2]; % Posicion inicial
 qf = [0 pi/2];
 Robot.teach(q0)
+
+%% Trajectoria
+x0 = [1, -1, 0];
+xf = [1, 1, 0];
+t = 0:0.15:3;
+[x, xd, xdd] = jtraj(x0, xf, t);  %Calcula las componentes en cada periodo de tiempo
+T = transl(x);
+q_traj = Robot.ikine(T, 'q0', q0, 'mask',[1, 1, 0, 0, 0, 0])
+Robot.plot(q_traj)
