@@ -12,15 +12,19 @@ xf = [1, 1];    % Posición final (m)
 tf = 3;         % Tiempo final (s)
 tstep = 0.02;   % Timestep (s)
 
-% %% Control
+%% Control
+xi = 1;
+ts = 0.1;
+
 % OS = 4;         % Buscamos sobrepico <= 5%
 % xi = -log(OS/100)/sqrt(pi^2 + log(OS/100)^2);
-% ts = 0.25;         % Settling time
-% wn = 4/(xi*ts);
-% fprintf("wn = %.3f\n", wn)
-% 
-% Kp = wn^2*eye(2)
-% Kv = 2*sqrt(Kp)*eye(2)
+% ts =  0.25;         % Settling time
+
+wn = 4/(xi*ts);
+fprintf("wn = %.3f\n", wn)
+
+Kp = wn^2*eye(2);
+Kv = 2*sqrt(Kp)*eye(2);
 
 % %% Polos
 % disp('Polos')
