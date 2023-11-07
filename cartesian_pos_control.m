@@ -5,6 +5,7 @@ close all
 
 %% Creación del robot
 robotconfig;
+Robot = Robot.perturb(0.8);  % Perturbación
 
 %% Posiciones iniciales y finales
 x0 = [1, -1];   % Posición inicial (m)
@@ -13,18 +14,16 @@ tf = 3;         % Tiempo final (s)
 tstep = 0.02;   % Timestep (s)
 
 %% Control
-xi = 1;
-ts = 0.1;
-
 % OS = 4;         % Buscamos sobrepico <= 5%
 % xi = -log(OS/100)/sqrt(pi^2 + log(OS/100)^2);
-% ts =  0.25;         % Settling time
+xi = 1;             % Críticamente amortiguado
+ts =  0.1;          % Settling time
 
 wn = 4/(xi*ts);
 fprintf("wn = %.3f\n", wn)
 
-Kp = wn^2*eye(2);
-Kv = 2*sqrt(Kp)*eye(2);
+Kp = wn^2*eye(2)
+Kv = 2*xi*wn*eye(2)
 
 % %% Polos
 % disp('Polos')
