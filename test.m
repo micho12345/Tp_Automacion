@@ -19,10 +19,10 @@ fill3(xVertices, yVertices, zVertices, 'b'); % 'b' para color azul
 KR = SerialLink(L)
 
 %MATRIZ T
-qf = [0 pi/2];  %Pos final, lo que rotan cada joint para la posicion final
+qf = [pi/2 0];  %Pos final, lo que rotan cada joint para la posicion final
 Tf = KR.fkine(qf);     %matriz Tf
 
-q0 = [-pi/2 pi/2];     %pos inicial
+q0 = [0 0];     %pos inicial
 q = KR.ikine(Tf, q0, 'mask', [1 1 0 0 0 0]); %Cinematica Inversa  ---> lo ultimo son los grados de libertad
 
 KR.name = 'Pacho Norras';   %Nombre del robot
@@ -45,3 +45,5 @@ end
 plot(KR,Q);    %imprimo brazo
 hold on
 plot3(xx,yy,zz,'Color',[1 0 0], 'LineWidth', 2);
+
+KR.teach(q0)

@@ -5,7 +5,7 @@ close all
 
 %% Creación del robot
 robotconfig;
-Robot = Robot.perturb(0.8);  % Perturbación
+% Robot = Robot.perturb(0.8);  % Perturbación
 
 %% Posiciones iniciales y finales
 x0 = [1, -1];   % Posición inicial (m)
@@ -47,11 +47,11 @@ Kv = 2*xi*wn*eye(2)
 % k2 = double(solve(2*xi*double(sqrt(wn)) == den(2), k2))
 
 
-% %% Test
-% x0 = [1, -1, 0];
-% xf = [1, 1, 0];
-% t = 0:0.15:3;
-% [x, xd, xdd] = jtraj(x0, xf, t);  %Calcula las componentes en cada periodo de tiempo
-% T = transl(x);
-% q_traj = Robot.ikine(T, 'q0', q0, 'mask',[1, 1, 0, 0, 0, 0])
-% Robot.plot(q_traj)
+%% Test
+x0 = [0.5, 1.5, 0];   % Posición inicial (m)
+xf = [1.5, 0.5, 0];    % Posición final (m)
+t = 0:0.15:3;
+[x, xd, xdd] = jtraj(x0, xf, t);  %Calcula las componentes en cada periodo de tiempo
+T = transl(x);
+q_traj = Robot.ikine(T, 'q0', q0, 'mask',[1, 1, 0, 0, 0, 0])
+Robot.plot(q_traj)
